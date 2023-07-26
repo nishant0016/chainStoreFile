@@ -90,6 +90,32 @@ app.get("/products",function(req,res){
         }
     })
 });
+app.get("/shopsList", function(req, res) {
+    fs.readFile(fshops, "utf8", function(err, data) {
+        if (err) {
+            res.status(404).send(err);
+        } else {
+            let obj = JSON.parse(data);
+            let list = obj.reduce((acc, curr) => {
+                return acc.concat({ shopId: curr.shopId, name: curr.name });
+            }, []);
+            res.send(list);
+        }
+    });
+});
+app.get("/productsList", function(req, res) {
+    fs.readFile(fproducts, "utf8", function(err, data) {
+        if (err) {
+            res.status(404).send(err);
+        } else {
+            let obj = JSON.parse(data);
+            let list = obj.reduce((acc, curr) => {
+                return acc.concat({ productId: curr.productId, productName: curr.productName });
+            }, []);
+            res.send(list);
+        }
+    });
+});
 
 app.get("/products/:id",function(req,res){
     let id=+req.params.id;
