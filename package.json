@@ -5,12 +5,16 @@
   "main": "mainFile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node mainFile.js"
+    "start": "node mainFile.js"
   },
-  "keywords": ["node","build"],
+  "keywords": [
+    "node",
+    "build"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "readline-sync": "^1.4.10"
   }
 }
