@@ -234,7 +234,7 @@ app.get("/totalPurchase/product/:id", function (req, res) {
 
             const shopWiseTotalPurchase = productPurchases.reduce((acc, purchase) => {
                 const shopId = purchase.shopId;
-                const totalValue =purchase.price*purchase.quantity;
+                const totalValue =purchase.quantity;
                 acc[shopId] = acc[shopId] ? acc[shopId] + totalValue : totalValue;
                 return acc;
             }, {});
