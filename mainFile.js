@@ -136,7 +136,7 @@ app.put("/products/:id",function(req,res){
 })
 app.get("/purchases", function (req, res) {
     const shop = +req.query.shop;
-    const product = +req.query.product;
+    let product = req.query.product;
     const sort = req.query.sort;
 
     fs.readFile(fpurchases, "utf8", function (err, data) {
@@ -150,7 +150,8 @@ app.get("/purchases", function (req, res) {
             purchases = purchases.filter((purchase) => purchase.shopId === shop);
         }
         if (product) {
-            purchases = purchases.filter((purchase) => purchase.productid === product);
+            product=product.split(',');
+            purchases = purchases.filter((purchase) => product.find(pd1=>pd1==purchase.productid));
         }
         
         if (sort) {
