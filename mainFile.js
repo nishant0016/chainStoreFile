@@ -91,6 +91,18 @@ app.get("/products",function(req,res){
     })
 });
 
+app.get("/products/:id",function(req,res){
+    let id=+req.params.id;
+    fs.readFile(fproducts,"utf8",function(err,data){
+        if (err) res.status(404).send(err);
+        else{
+            let obj=JSON.parse(data);
+            let product=obj.find(pr=>pr.productId === id)
+            res.send(product);
+        }
+    })
+});
+
 app.post("/products",function(req,res){
     let body=req.body;
     fs.readFile(fproducts,"utf8",function(err,data){
